@@ -116,8 +116,11 @@ public class ExcelUtility {
                 LocalDate selected = LocalDate.parse(tempSelectedFullDate, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                 if (target.isBefore(selected)) {
                     driver.findElement(By.xpath(NAVIGATE_PREVIOUS)).click();
+                    logInfo("Date not found so clicked Previous button");
                 } else if (target.isAfter(selected)) {
                     driver.findElement(By.xpath(NAVIGATE_NEXT)).click();
+                    logInfo("Date not found so clicked next button");
+
                 } else {
                     break;
                 }
@@ -458,9 +461,14 @@ public class ExcelUtility {
 
     public static void punchInMissingPopUp(WebDriver driver) {
 
-        if (driver.findElement(By.xpath("//h1[contains(text(),'Your attendance')]")).isDisplayed()) {
-            driver.findElement(By.xpath("//span[normalize-space()='Cancel']")).click();
+        List<WebElement> attendanceHeaders = driver.findElements(By.xpath(POPUP_TEXT));
+
+        if (!attendanceHeaders.isEmpty() && attendanceHeaders.get(0).isDisplayed()) {
+            driver.findElement(By.xpath(POPUP_CANCEL)).click();
+        } else {
+            logInfo("No punch-in missing popup detected, continuing as normal.");
         }
+
 
     }
 
