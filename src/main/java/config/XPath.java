@@ -33,11 +33,9 @@ public class XPath {
     public static final String POPUP_TEXT = "//h1[contains(text(),'Your attendance')]";
     public static final String POPUP_CANCEL = "//span[normalize-space()='Cancel']";
     public static final String WFH_RADIO = "(//div[@class='dx-radiobutton-icon-dot'])[1]";
-    public static final String POPUP_MSG = "//textarea[@placeholder='Please provide details of official travel...']";
-    public static final String POPUP_OK = "//div[@aria-label='Ok']";
+    public static final String POPUP_MSG = "//textarea[contains(@class,'ant-input') and contains(@class,'dx-field-value')]";
+    public static final String POPUP_OK = "//span[normalize-space()='Ok']";
     public static final String LEAVE_RADIO = "(//div[@class='dx-radiobutton-icon-dot'])[2]";
     public static final String OFFICIAL_TRAVEL_RADIO = "(//div[@class='dx-radiobutton-icon-dot'])[3]";
-
-
 
 }

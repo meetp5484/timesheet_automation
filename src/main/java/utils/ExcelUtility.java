@@ -218,13 +218,13 @@ public class ExcelUtility {
                         iCell.setCellValue("punching type is missing & punching reason is missing");
                     } else {
                         if (missingType) {
-                            Cell gCell = row.getCell(8);
-                            if (gCell == null) gCell = row.createCell(8);
+                            Cell gCell = row.getCell(6);
+                            if (gCell == null) gCell = row.createCell(6 );
                             gCell.setCellValue("missing punch type");
                         }
                         if (missingReason) {
-                            Cell hCell = row.getCell(8);
-                            if (hCell == null) hCell = row.createCell(8);
+                            Cell hCell = row.getCell(7);
+                            if (hCell == null) hCell = row.createCell(7);
                             hCell.setCellValue("missing punch reason");
                         }
                     }
@@ -265,9 +265,9 @@ public class ExcelUtility {
             if (rowHours + existingHours > 9) {
                 logInfo("Cannot save: total hours exceed daily limit! Skipping row before filling project/job.");
                 // Optionally, write to Excel status column
-                Cell statusCell = row.getCell(6);
+                Cell statusCell = row.getCell(8);
                 if (statusCell == null) {
-                    statusCell = row.createCell(6);
+                    statusCell = row.createCell(8);
                 }
                 statusCell.setCellValue("Total hours exceed daily limit");
                 FileOutputStream fos = new FileOutputStream(FILE_PATH);
@@ -379,6 +379,8 @@ public class ExcelUtility {
             logInfo("Total hours OK. Clicking Save...");
             WebElement saveBtn = driver.findElement(By.xpath(SAVE));
             saveBtn.click();
+            Thread.sleep(2000);
+
         }
         workbook.close();
         fis.close();
